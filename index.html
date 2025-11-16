@@ -4,12 +4,13 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Happy Birthday Priyanshi ✨</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#fff8fb;
     --accent:#e8438b;
     --muted:#6b6b6b;
+    --glass: rgba(255,255,255,0.12);
   }
   *{box-sizing:border-box}
   body{
@@ -22,145 +23,84 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding:22px;
+    padding:20px;
   }
 
-  /* header */
-  .header{ text-align:center; margin-top:8px; z-index:2 }
+  /* Header */
+  .header{ text-align:center; margin-top:6px; z-index:2; }
   .title{ font-weight:700; font-size:30px; color:var(--accent); letter-spacing:0.2px; }
-  .sub{ margin-top:8px; color:var(--muted); font-size:15px; }
+  .sub{ margin-top:8px; color:var(--muted); font-size:14px; max-width:760px; }
 
-  /* small floating hearts (very subtle) */
-  .float-heart{
-    position:fixed;
-    width:12px;height:12px;
-    background:#ffd6ea;
-    transform:rotate(45deg);
-    opacity:0.42;
-    border-radius:3px;
-    pointer-events:none;
-    z-index:0;
-  }
+  /* subtle floating hearts */
+  .float-heart{ position:fixed; width:12px;height:12px; background:#ffd6ea; transform:rotate(45deg); opacity:0.42; border-radius:3px; pointer-events:none; z-index:0; }
 
-  /* wrapper */
   .wrap{ width:100%; max-width:980px; margin-top:18px; z-index:1; }
 
-  /* gallery horizontal */
+  /* Gallery horizontal */
   .gallery{
-    display:flex;
-    gap:14px;
-    overflow-x:auto;
-    padding:12px;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
+    display:flex; gap:14px; overflow-x:auto; padding:12px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
   }
   .gallery::-webkit-scrollbar{display:none}
   .card{
-    flex:0 0 72%;
-    max-width:380px;
-    border-radius:16px;
-    overflow:hidden;
-    position:relative;
-    box-shadow:0 12px 30px rgba(15,15,15,0.06);
-    scroll-snap-align:center;
-    background:#fff;
-    cursor:pointer;
-    transition:transform 300ms ease;
+    flex:0 0 72%; max-width:380px; border-radius:16px; overflow:hidden; position:relative;
+    box-shadow:0 14px 40px rgba(15,15,15,0.06); scroll-snap-align:center; background:#fff; cursor:pointer; transition:transform 300ms ease;
   }
   @media(min-width:760px){ .card{ flex:0 0 30% } }
-  .card img{
-    width:100%;
-    height:260px;
-    object-fit:cover;
-    display:block;
-    transition:transform .35s ease, filter .35s ease;
-  }
+  .card img{ width:100%; height:260px; object-fit:cover; display:block; transition:transform .35s ease, filter .35s ease; }
   .card:hover img{ transform:scale(1.04); filter:brightness(.92); }
-  .card .meta{ padding:12px 14px; font-size:14px; color:var(--muted); }
+  .meta{ padding:12px 14px; font-size:14px; color:var(--muted); }
 
   /* glass popup */
-  .popup-back{
-    position:fixed; inset:0;
-    background: rgba(11,11,11,0.36);
-    backdrop-filter: blur(8px);
-    display:none; align-items:center; justify-content:center;
-    z-index:60; padding:18px;
-  }
+  .popup-back{ position:fixed; inset:0; background: rgba(11,11,11,0.36); backdrop-filter: blur(8px); display:none; align-items:center; justify-content:center; z-index:60; padding:18px; }
   .glass{
-    width:100%; max-width:420px;
-    border-radius:16px; padding:20px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-    border:1px solid rgba(255,255,255,0.22);
-    box-shadow: 0 12px 30px rgba(12,12,12,0.15);
-    color:white;
-    transform-origin:center;
-    animation:pop .26s ease;
+    width:100%; max-width:460px; border-radius:16px; padding:18px; background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06)); border:1px solid rgba(255,255,255,0.22); box-shadow:0 12px 30px rgba(12,12,12,0.15); color:white; transform-origin:center; animation:pop .26s ease;
   }
-  @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+  @keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+  .quote{ font-size:17px; line-height:1.45; color:#fff; transform: rotate(-4deg); text-align:left; padding:10px 12px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border-radius:10px; margin-bottom:12px; box-shadow: inset 0 -6px 14px rgba(0,0,0,0.06); }
+  .quote .mark{ font-size:28px; color:rgba(255,255,255,0.95); margin-right:8px; vertical-align:middle; }
+  .quote p{ display:inline; color:rgba(255,255,255,0.95); font-weight:500; }
 
-  /* tilted quote */
-  .quote {
-    font-size:17px; line-height:1.45; color:#fff;
-    transform: rotate(-4deg);
-    text-align:left; padding:10px 12px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-    border-radius:10px; margin-bottom:12px;
-    box-shadow: inset 0 -6px 14px rgba(0,0,0,0.06);
-  }
-  .quote .mark { font-size:28px; color:rgba(255,255,255,0.95); margin-right:8px; vertical-align:middle;}
-  .quote p{ display:inline; color:rgba(255,255,255,0.95); font-weight:500 }
+  .close-btn{ display:inline-block; margin-top:6px; padding:8px 12px; border-radius:10px; border:none; background:rgba(255,255,255,0.12); color:#fff; cursor:pointer; font-weight:600; }
 
-  .close-btn{
-    display:inline-block; margin-top:6px; padding:8px 12px; border-radius:10px; border:none;
-    background:rgba(255,255,255,0.12); color:#fff; cursor:pointer; font-weight:600;
-  }
-
-  /* music + controls + surprise */
+  /* controls area */
   .controls{ margin-top:18px; display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; }
-  .player{
-    display:flex; gap:8px; align-items:center; background:linear-gradient(180deg,#fff,#fff);
-    padding:10px 12px;border-radius:12px; box-shadow:0 8px 20px rgba(15,15,15,0.06);
-  }
-  .player svg{ opacity:.9 }
-  .surprise{
-    padding:12px 18px; background:linear-gradient(90deg,var(--accent),#b12e7a);
-    color:#fff;border:none;border-radius:12px; cursor:pointer;font-weight:600;
-    box-shadow:0 10px 25px rgba(200,60,130,0.14);
-  }
+  .player{ display:flex; gap:10px; align-items:center; background:#fff; padding:10px 12px; border-radius:12px; box-shadow:0 10px 30px rgba(15,15,15,0.06); }
+  .player svg{ opacity:.95 }
+  .surprise{ padding:12px 18px; background:linear-gradient(90deg,var(--accent),#b12e7a); color:#fff; border:none; border-radius:12px; cursor:pointer; font-weight:700; box-shadow:0 12px 30px rgba(200,60,130,0.12); }
 
-  /* cake modal */
-  .cake-back{ position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-    background:linear-gradient(180deg, rgba(12,10,20,0.6), rgba(12,10,20,0.6)); z-index:70; padding:18px;}
-  .cake-card{ width:100%; max-width:520px; border-radius:16px; padding:22px;
-    background:linear-gradient(180deg,#fff4fb,#fff1f7); text-align:center; box-shadow:0 18px 50px rgba(10,8,30,0.35);
-  }
-  .cake-img{ width:220px; height:auto; margin:0 auto; display:block; }
-  .candle-wrap{ position:relative; display:inline-block; margin-top:-40px; cursor:pointer; }
-  .flame{
-    width:18px; height:26px; margin:0 auto; border-radius:50% 50% 40% 40%;
-    background: radial-gradient(circle at 40% 30%, #fff1b8, #ffd36a 40%, #ff7a2d 70%, transparent 71%);
-    position:absolute; top:-40px; left:50%; transform:translateX(-50%); filter:drop-shadow(0 6px 10px rgba(255,120,140,0.15));
-    animation:flame 900ms infinite;
-  }
-  @keyframes flame{ 0%{transform:translateX(-50%) scale(1)} 50%{transform:translateX(-50%) scale(.92)} 100%{transform:translateX(-50%) scale(1)} }
-  .candle-body{ width:10px; height:58px; background:linear-gradient(180deg,#fff,#ffe6f0); border-radius:4px; margin-top:-6px; display:block; position:relative; left:50%; transform:translateX(-50%); box-shadow:0 3px 10px rgba(0,0,0,0.06); }
+  /* music play button (floating) */
+  #playMusic{ position:fixed; bottom:18px; right:18px; padding:12px 16px; font-size:14px; border:none; background:linear-gradient(90deg,#ff7ab6,#ff4b99); color:white; border-radius:12px; box-shadow:0 8px 24px rgba(255,80,140,0.16); z-index:999; cursor:pointer; }
 
-  .letter{
-    display:none; margin-top:18px; background:#fff; padding:18px;border-radius:12px;color:#333; text-align:left;
-    box-shadow:0 16px 40px rgba(10,10,20,0.08); font-size:15px; line-height:1.5;
-  }
-  .letter h3{ margin:0 0 8px 0; color:var(--accent); font-size:18px }
-  .letter p{ margin:0 }
+  .foot{ margin-top:18px; font-size:13px; color:var(--muted); text-align:center; }
 
-  .foot{ margin-top:18px; font-size:13px; color:var(--muted) }
+  /* cake modal (CSS cake, no image) */
+  .cake-back{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(12,10,20,0.6), rgba(12,10,20,0.6)); z-index:80; padding:18px;}
+  .cake-card{ width:100%; max-width:520px; border-radius:16px; padding:22px; background:linear-gradient(180deg,#fff4fb,#fff1f7); text-align:center; box-shadow:0 18px 50px rgba(10,8,30,0.35); }
+  .cake-box{ width:260px; height:150px; margin:6px auto 0; background: linear-gradient(180deg,#ffb7c5,#ff9aa9); border-radius:12px; position:relative; box-shadow:0 20px 35px rgba(0,0,0,0.08); }
+  .cake-top{ position:absolute; top:-22px; left:50%; transform:translateX(-50%); width:320px; height:42px; background:#ff9ab3; border-radius:50%; }
+  .candle-wrap{ position:absolute; left:50%; transform:translateX(-50%); top:-46px; cursor:pointer; display:flex; flex-direction:column; align-items:center; }
+  .candle-body{ width:12px; height:60px; background:linear-gradient(180deg,#fff,#ffe6f0); border-radius:4px; box-shadow:0 3px 10px rgba(0,0,0,0.06); position:relative; }
+  .flame{ width:18px; height:26px; border-radius:50% 50% 45% 45%; background: radial-gradient(circle at 40% 30%, #fff1b8, #ffd36a 40%, #ff7a2d 70%, transparent 71%); position:relative; top:-30px; filter:drop-shadow(0 6px 10px rgba(255,120,140,0.18)); animation:flame 900ms infinite; }
+  @keyframes flame{ 0%{transform:scale(1)} 50%{transform:scale(.94)} 100%{transform:scale(1)} }
+
+  .letter{ display:none; margin-top:18px; background:#fff; padding:18px;border-radius:12px;color:#333; text-align:left; box-shadow:0 16px 40px rgba(10,10,20,0.08); font-size:15px; line-height:1.5;}
+  .letter h3{ margin:0 0 8px 0; color:var(--accent); font-size:18px; }
+  .letter p{ margin:0; white-space:pre-wrap; }
+
+  /* small responsive tweaks */
+  @media(max-width:420px){
+    .card img{ height:200px; }
+    .cake-box{ width:200px; height:120px; }
+    .cake-top{ width:240px; height:36px; top:-18px; }
+  }
 </style>
 </head>
 <body>
 
-  <!-- subtle floating hearts -->
+  <!-- floating hearts -->
   <div class="float-heart" style="left:8%; top:12%;"></div>
-  <div class="float-heart" style="left:82%; top:22%; width:12px;height:12px;"></div>
-  <div class="float-heart" style="left:36%; top:6%; width:10px;height:10px;"></div>
+  <div class="float-heart" style="left:80%; top:18%; width:12px;height:12px;"></div>
+  <div class="float-heart" style="left:40%; top:6%; width:10px;height:10px;"></div>
 
   <div class="header">
     <div class="title">Happy Birthday Priyanshi ✨</div>
@@ -213,13 +153,15 @@
       </div>
     </div>
 
-    <!-- music + surprise -->
+    <!-- controls -->
     <div class="controls">
-      <div class="player">
-        <svg width="20" height="20" viewBox="0 0 24 24" style="opacity:.95"><path fill="#e8438b" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+      <div class="player" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#e8438b" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
         <div style="font-size:14px; color:#333; margin-right:8px;">Soft piano</div>
-        <audio id="favAudio" controls preload="none" style="max-width:260px">
-          <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9b513b3df9.mp3?filename=piano-soft-background-ambient-110874.mp3" type="audio/mp3">
+
+        <!-- visible audio control (in case autoplay blocked) -->
+        <audio id="favAudio" controls preload="none" style="max-width:240px;">
+          <source src="https://o.uguu.se/ewiwJDBv.mp3" type="audio/mp3">
           Your browser does not support audio.
         </audio>
       </div>
@@ -230,18 +172,22 @@
     <div class="foot">Swipe photos → Tap any image to open a small note ✨</div>
   </div>
 
+  <!-- floating play button for mobile autoplay rule -->
+  <button id="playMusic" aria-label="Play background music">🎵 Play Music</button>
+
   <!-- cake modal -->
-  <div class="cake-back" id="cakeBack">
+  <div class="cake-back" id="cakeBack" role="dialog" aria-modal="true">
     <div class="cake-card">
-      <h2 style="margin-top:0;color:#e84b8b">Surprise 🎂</h2>
+      <h2 style="margin-top:0;color:var(--accent)">Surprise 🎂</h2>
       <div style="margin-top:6px;color:#555">Click the candle to blow it out</div>
 
       <div style="margin-top:18px">
-        <!-- cake image (cute) -->
-        <img class="cake-img" src="https://i.ibb.co/3s7wV6F/cute-cake.png" alt="cake">
-        <div class="candle-wrap" id="candleWrap" onclick="blowCandle()">
-          <div class="flame" id="flameEl"></div>
-          <div class="candle-body"></div>
+        <div class="cake-box" aria-hidden="true">
+          <div class="cake-top" aria-hidden="true"></div>
+          <div class="candle-wrap" id="candleWrap" onclick="blowCandle()" role="button" aria-label="Blow candle">
+            <div class="flame" id="flameEl"></div>
+            <div class="candle-body"></div>
+          </div>
         </div>
       </div>
 
@@ -256,8 +202,13 @@
     </div>
   </div>
 
+  <!-- audio element used by floating button (hidden) -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://o.uguu.se/ewiwJDBv.mp3" type="audio/mp3">
+  </audio>
+
 <script>
-  // messages for each image - you can tweak these
+  // messages for each image
   const msgs = {
     1: 'You carry a calm energy — quietly bright and lovely.',
     2: 'That smile is soft, honest and makes small moments better.',
@@ -267,18 +218,18 @@
     6: 'Bright, wholesome and easy-going energy — very pretty.'
   };
 
+  // open glass popup
   function openGlass(i){
     const q = document.getElementById('quoteText');
     q.textContent = msgs[i] || 'You are wonderful';
     document.getElementById('popupBack').style.display = 'flex';
-    // slight tilt + pop
     const glass = document.getElementById('glassCard');
     glass.style.transform = 'rotate(-4deg) scale(.98)';
     setTimeout(()=> glass.style.transform = 'rotate(-4deg) scale(1)', 40);
   }
   function closeGlass(){ document.getElementById('popupBack').style.display = 'none'; }
 
-  // floating hearts small animation
+  // floating hearts subtle
   (function placeHearts(){
     const hearts = document.querySelectorAll('.float-heart');
     hearts.forEach(h=>{
@@ -286,14 +237,13 @@
     });
   })();
 
-  // Cake / candle logic
+  // Cake / Candle logic (CSS candle)
   let blown = false;
   function openCake(){
     document.getElementById('cakeBack').style.display = 'flex';
   }
   function closeCake(){
     document.getElementById('cakeBack').style.display = 'none';
-    // reset flame & letter
     document.getElementById('flameEl').style.display = 'block';
     blown = false;
     document.getElementById('letterBox').style.display = 'none';
@@ -309,24 +259,48 @@
     setTimeout(()=> showLetter(), 700);
   }
 
-  // Letter typewriter
-  const letter = `May your days be calm, creative and filled with small bright moments.  
-You deserve peace, good coffee, and little surprises that make you smile.  
+  // Letter text (typewriter)
+  const letter = `May your days be calm, creative and filled with small bright moments.
+You deserve peace, good coffee, and little surprises that make you smile.
 Happy Birthday, Priyanshi ✨`;
 
   function showLetter(){
     const box = document.getElementById('letterBox');
     const tEl = document.getElementById('letterText');
     box.style.display = 'block';
-    let i=0; const speed = 24;
+    let i=0; const speed = 26;
     function typer(){ if(i < letter.length){ tEl.textContent += letter.charAt(i); i++; setTimeout(typer, speed); } }
     typer();
   }
 
-  // keyboard accessibility
-  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeGlass(); closeCake(); } });
+  // Play background music (floating button)
+  const music = document.getElementById('bgMusic');
+  const btn = document.getElementById('playMusic');
+  btn.addEventListener('click', async ()=>{
+    try{
+      await music.play();
+    }catch(e){
+      // some browsers require user gesture on the element; try playing via a short user gesture
+      console.warn('Play blocked, try clicking the visible player control.');
+    }
+    btn.style.display = 'none';
+  });
 
-  // Note: some browsers block autoplay — user can press play on player control.
+  // Accessibility: close modals on Escape
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){ closeGlass(); closeCake(); }
+  });
+
+  // If user clicks outside glass popup, close it
+  document.getElementById('popupBack').addEventListener('click', (e)=>{
+    if(e.target.id === 'popupBack') closeGlass();
+  });
+  document.getElementById('cakeBack').addEventListener('click', (e)=>{
+    if(e.target.id === 'cakeBack') closeCake();
+  });
+
+  // Hint: if autoplay blocked on some phones, user can press Play Music button or the audio control.
 </script>
 </body>
-</html>
+              </html>
+              
