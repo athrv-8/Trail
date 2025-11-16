@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Priyanshi ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fff8fb;
+    --accent:#e8438b;
+    --muted:#6b6b6b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(180deg,#fff8fb 0%, #fff2f7 100%);
+    color:#222;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:22px;
+  }
+
+  /* header */
+  .header{ text-align:center; margin-top:8px; z-index:2 }
+  .title{ font-weight:700; font-size:30px; color:var(--accent); letter-spacing:0.2px; }
+  .sub{ margin-top:8px; color:var(--muted); font-size:15px; }
+
+  /* small floating hearts (very subtle) */
+  .float-heart{
+    position:fixed;
+    width:12px;height:12px;
+    background:#ffd6ea;
+    transform:rotate(45deg);
+    opacity:0.42;
+    border-radius:3px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* wrapper */
+  .wrap{ width:100%; max-width:980px; margin-top:18px; z-index:1; }
+
+  /* gallery horizontal */
+  .gallery{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    padding:12px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .gallery::-webkit-scrollbar{display:none}
+  .card{
+    flex:0 0 72%;
+    max-width:380px;
+    border-radius:16px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 12px 30px rgba(15,15,15,0.06);
+    scroll-snap-align:center;
+    background:#fff;
+    cursor:pointer;
+    transition:transform 300ms ease;
+  }
+  @media(min-width:760px){ .card{ flex:0 0 30% } }
+  .card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    display:block;
+    transition:transform .35s ease, filter .35s ease;
+  }
+  .card:hover img{ transform:scale(1.04); filter:brightness(.92); }
+  .card .meta{ padding:12px 14px; font-size:14px; color:var(--muted); }
+
+  /* glass popup */
+  .popup-back{
+    position:fixed; inset:0;
+    background: rgba(11,11,11,0.36);
+    backdrop-filter: blur(8px);
+    display:none; align-items:center; justify-content:center;
+    z-index:60; padding:18px;
+  }
+  .glass{
+    width:100%; max-width:420px;
+    border-radius:16px; padding:20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+    border:1px solid rgba(255,255,255,0.22);
+    box-shadow: 0 12px 30px rgba(12,12,12,0.15);
+    color:white;
+    transform-origin:center;
+    animation:pop .26s ease;
+  }
+  @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+
+  /* tilted quote */
+  .quote {
+    font-size:17px; line-height:1.45; color:#fff;
+    transform: rotate(-4deg);
+    text-align:left; padding:10px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border-radius:10px; margin-bottom:12px;
+    box-shadow: inset 0 -6px 14px rgba(0,0,0,0.06);
+  }
+  .quote .mark { font-size:28px; color:rgba(255,255,255,0.95); margin-right:8px; vertical-align:middle;}
+  .quote p{ display:inline; color:rgba(255,255,255,0.95); font-weight:500 }
+
+  .close-btn{
+    display:inline-block; margin-top:6px; padding:8px 12px; border-radius:10px; border:none;
+    background:rgba(255,255,255,0.12); color:#fff; cursor:pointer; font-weight:600;
+  }
+
+  /* music + controls + surprise */
+  .controls{ margin-top:18px; display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .player{
+    display:flex; gap:8px; align-items:center; background:linear-gradient(180deg,#fff,#fff);
+    padding:10px 12px;border-radius:12px; box-shadow:0 8px 20px rgba(15,15,15,0.06);
+  }
+  .player svg{ opacity:.9 }
+  .surprise{
+    padding:12px 18px; background:linear-gradient(90deg,var(--accent),#b12e7a);
+    color:#fff;border:none;border-radius:12px; cursor:pointer;font-weight:600;
+    box-shadow:0 10px 25px rgba(200,60,130,0.14);
+  }
+
+  /* cake modal */
+  .cake-back{ position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+    background:linear-gradient(180deg, rgba(12,10,20,0.6), rgba(12,10,20,0.6)); z-index:70; padding:18px;}
+  .cake-card{ width:100%; max-width:520px; border-radius:16px; padding:22px;
+    background:linear-gradient(180deg,#fff4fb,#fff1f7); text-align:center; box-shadow:0 18px 50px rgba(10,8,30,0.35);
+  }
+  .cake-img{ width:220px; height:auto; margin:0 auto; display:block; }
+  .candle-wrap{ position:relative; display:inline-block; margin-top:-40px; cursor:pointer; }
+  .flame{
+    width:18px; height:26px; margin:0 auto; border-radius:50% 50% 40% 40%;
+    background: radial-gradient(circle at 40% 30%, #fff1b8, #ffd36a 40%, #ff7a2d 70%, transparent 71%);
+    position:absolute; top:-40px; left:50%; transform:translateX(-50%); filter:drop-shadow(0 6px 10px rgba(255,120,140,0.15));
+    animation:flame 900ms infinite;
+  }
+  @keyframes flame{ 0%{transform:translateX(-50%) scale(1)} 50%{transform:translateX(-50%) scale(.92)} 100%{transform:translateX(-50%) scale(1)} }
+  .candle-body{ width:10px; height:58px; background:linear-gradient(180deg,#fff,#ffe6f0); border-radius:4px; margin-top:-6px; display:block; position:relative; left:50%; transform:translateX(-50%); box-shadow:0 3px 10px rgba(0,0,0,0.06); }
+
+  .letter{
+    display:none; margin-top:18px; background:#fff; padding:18px;border-radius:12px;color:#333; text-align:left;
+    box-shadow:0 16px 40px rgba(10,10,20,0.08); font-size:15px; line-height:1.5;
+  }
+  .letter h3{ margin:0 0 8px 0; color:var(--accent); font-size:18px }
+  .letter p{ margin:0 }
+
+  .foot{ margin-top:18px; font-size:13px; color:var(--muted) }
+</style>
+</head>
+<body>
+
+  <!-- subtle floating hearts -->
+  <div class="float-heart" style="left:8%; top:12%;"></div>
+  <div class="float-heart" style="left:82%; top:22%; width:12px;height:12px;"></div>
+  <div class="float-heart" style="left:36%; top:6%; width:10px;height:10px;"></div>
+
+  <div class="header">
+    <div class="title">Happy Birthday Priyanshi ✨</div>
+    <div class="sub">A small page made to brighten your day — just vibes, no pressure 💫</div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- gallery -->
+    <div class="gallery" id="gallery">
+      <div class="card" onclick="openGlass(1)">
+        <img src="https://i.ibb.co/qwYzdhW/IMG-20251116-120503.jpg" alt="">
+        <div class="meta">Tap to view ✦</div>
+      </div>
+
+      <div class="card" onclick="openGlass(2)">
+        <img src="https://i.ibb.co/93Nz1cQQ/IMG-20251116-120448.jpg" alt="">
+        <div class="meta">Tap to view ✦</div>
+      </div>
+
+      <div class="card" onclick="openGlass(3)">
+        <img src="https://i.ibb.co/wh3YTbMT/IMG-20251116-121550-318.jpg" alt="">
+        <div class="meta">Tap to view ✦</div>
+      </div>
+
+      <div class="card" onclick="openGlass(4)">
+        <img src="https://i.ibb.co/cpvn3PS/IMG-20251116-121553-635.jpg" alt="">
+        <div class="meta">Tap to view ✦</div>
+      </div>
+
+      <div class="card" onclick="openGlass(5)">
+        <img src="https://i.ibb.co/twgDQMR9/IMG-20251116-121555-261.jpg" alt="">
+        <div class="meta">Tap to view ✦</div>
+      </div>
+
+      <div class="card" onclick="openGlass(6)">
+        <img src="https://i.ibb.co/6c04yzFr/IMG-20251116-121556-285.jpg" alt="">
+        <div class="meta">Tap to view ✦</div>
+      </div>
+    </div>
+
+    <!-- glass popup -->
+    <div class="popup-back" id="popupBack">
+      <div class="glass" id="glassCard" role="dialog" aria-modal="true">
+        <div class="quote">
+          <span class="mark">“</span>
+          <p id="quoteText">Aesthetic message here</p>
+        </div>
+        <button class="close-btn" onclick="closeGlass()">Close</button>
+      </div>
+    </div>
+
+    <!-- music + surprise -->
+    <div class="controls">
+      <div class="player">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="opacity:.95"><path fill="#e8438b" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+        <div style="font-size:14px; color:#333; margin-right:8px;">Soft piano</div>
+        <audio id="favAudio" controls preload="none" style="max-width:260px">
+          <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9b513b3df9.mp3?filename=piano-soft-background-ambient-110874.mp3" type="audio/mp3">
+          Your browser does not support audio.
+        </audio>
+      </div>
+
+      <button class="surprise" onclick="openCake()">🎁 Open Surprise</button>
+    </div>
+
+    <div class="foot">Swipe photos → Tap any image to open a small note ✨</div>
+  </div>
+
+  <!-- cake modal -->
+  <div class="cake-back" id="cakeBack">
+    <div class="cake-card">
+      <h2 style="margin-top:0;color:#e84b8b">Surprise 🎂</h2>
+      <div style="margin-top:6px;color:#555">Click the candle to blow it out</div>
+
+      <div style="margin-top:18px">
+        <!-- cake image (cute) -->
+        <img class="cake-img" src="https://i.ibb.co/3s7wV6F/cute-cake.png" alt="cake">
+        <div class="candle-wrap" id="candleWrap" onclick="blowCandle()">
+          <div class="flame" id="flameEl"></div>
+          <div class="candle-body"></div>
+        </div>
+      </div>
+
+      <div class="letter" id="letterBox" aria-live="polite">
+        <h3>“A small wish”</h3>
+        <p id="letterText"></p>
+      </div>
+
+      <div style="margin-top:16px">
+        <button onclick="closeCake()" class="close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // messages for each image - you can tweak these
+  const msgs = {
+    1: 'You carry a calm energy — quietly bright and lovely.',
+    2: 'That smile is soft, honest and makes small moments better.',
+    3: 'A photo that feels like a gentle memory — warm and real.',
+    4: 'Simple, clean and naturally photogenic — love the vibe.',
+    5: 'A candid frame that belongs in a happy collection.',
+    6: 'Bright, wholesome and easy-going energy — very pretty.'
+  };
+
+  function openGlass(i){
+    const q = document.getElementById('quoteText');
+    q.textContent = msgs[i] || 'You are wonderful';
+    document.getElementById('popupBack').style.display = 'flex';
+    // slight tilt + pop
+    const glass = document.getElementById('glassCard');
+    glass.style.transform = 'rotate(-4deg) scale(.98)';
+    setTimeout(()=> glass.style.transform = 'rotate(-4deg) scale(1)', 40);
+  }
+  function closeGlass(){ document.getElementById('popupBack').style.display = 'none'; }
+
+  // floating hearts small animation
+  (function placeHearts(){
+    const hearts = document.querySelectorAll('.float-heart');
+    hearts.forEach(h=>{
+      h.animate([{transform:'translateY(0)'},{transform:'translateY(-12px)'}],{duration:4200,iterations:Infinity,direction:'alternate'});
+    });
+  })();
+
+  // Cake / candle logic
+  let blown = false;
+  function openCake(){
+    document.getElementById('cakeBack').style.display = 'flex';
+  }
+  function closeCake(){
+    document.getElementById('cakeBack').style.display = 'none';
+    // reset flame & letter
+    document.getElementById('flameEl').style.display = 'block';
+    blown = false;
+    document.getElementById('letterBox').style.display = 'none';
+    document.getElementById('letterText').textContent = '';
+  }
+
+  function blowCandle(){
+    if(blown) return;
+    const s = new Audio('https://cdn.pixabay.com/download/audio/2021/08/04/audio_779c1d1e7c.mp3?filename=blow-out-candle-6081.mp3');
+    s.play().catch(()=>{});
+    document.getElementById('flameEl').style.display = 'none';
+    blown = true;
+    setTimeout(()=> showLetter(), 700);
+  }
+
+  // Letter typewriter
+  const letter = `May your days be calm, creative and filled with small bright moments.  
+You deserve peace, good coffee, and little surprises that make you smile.  
+Happy Birthday, Priyanshi ✨`;
+
+  function showLetter(){
+    const box = document.getElementById('letterBox');
+    const tEl = document.getElementById('letterText');
+    box.style.display = 'block';
+    let i=0; const speed = 24;
+    function typer(){ if(i < letter.length){ tEl.textContent += letter.charAt(i); i++; setTimeout(typer, speed); } }
+    typer();
+  }
+
+  // keyboard accessibility
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeGlass(); closeCake(); } });
+
+  // Note: some browsers block autoplay — user can press play on player control.
+</script>
+</body>
+</html>
